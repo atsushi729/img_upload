@@ -11,6 +11,7 @@ $files = getAllFile();
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
   <title>アップロードフォーム</title>
 </head>
 <style>
@@ -33,7 +34,7 @@ $files = getAllFile();
     text-align: right;
   }
 
-  .btn {
+  /* .btn {
     display: inline-block;
     border-radius: 3px;
     font-size: 18px;
@@ -43,9 +44,13 @@ $files = getAllFile();
     color: #fff;
     cursor: pointer;
   }
+  .btn:hover {
+    cursor: pointer;
+    opacity: 0.8;
+  } */
 </style>
 
-<body>
+<body class="bg-dark text-white">
   <form enctype="multipart/form-data" action="./file_upload.php" method="POST">
     <div class="file-up ">
       <input type="hidden" name="MAX_FILE_SIZE" value="1048576" />
@@ -55,13 +60,13 @@ $files = getAllFile();
       <textarea name="caption" placeholder="キャプション（140文字以下）" id="caption"></textarea>
     </div>
     <div class="submit">
-      <input type="submit" value="送信" class="btn" />
+      <button type="submit" class="btn btn-outline-primary btn-lg btn-block mb-5" >送信</button>
     </div>
   </form>
   <div>
   <?php  foreach($files as $file): ?>
-    <img src="<?php echo "{$file['file_path']}";?>" alt="">
-    <p><?php echo h("{$file['description']}");?></p>
+    <img src="<?php echo "{$file['file_path']}";?>" alt="" class="img-fluid mb-2 rounded">
+    <p class="badge badge-success text-center mb-5"><?php echo h("{$file['description']}");?></p>
   <?php  endforeach; ?>
   </div>
 </body>
